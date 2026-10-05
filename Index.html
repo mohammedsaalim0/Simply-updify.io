@@ -1,0 +1,2475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>Certificate Demo — Simply Updify</title>
+
+<style>
+
+:root{
+  --bg:#06112b;
+  --panel:#0a1934;
+  --panel2:#08172e;
+  --line:rgba(185,145,58,.34);
+  --gold:#d4aa55;
+  --gold2:#b98d3d;
+  --muted:#7284a7;
+  --white:#f4f4f2;
+  --green:#18e47a;
+  --green-bg:rgba(0,190,125,.10);
+}
+
+*{
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  margin:0;
+  min-height:100vh;
+
+  background:
+    radial-gradient(
+      circle at 50% 22%,
+      rgba(30,53,92,.18),
+      transparent 30%
+    ),
+    linear-gradient(
+      180deg,
+      #061026 0%,
+      #07132d 55%,
+      #07142e 100%
+    );
+
+  color:var(--white);
+
+  font-family:
+    Inter,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+}
+
+
+/* =========================
+   DEMO LABEL
+========================= */
+
+.demo{
+  position:fixed;
+  z-index:99;
+  top:12px;
+  right:12px;
+
+  padding:7px 11px;
+
+  border:1px solid rgba(212,170,85,.45);
+  border-radius:999px;
+
+  background:rgba(4,13,31,.88);
+
+  color:#e0bf7a;
+
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:1.5px;
+
+  backdrop-filter:blur(8px);
+}
+
+
+/* =========================
+   MAIN WRAPPER
+========================= */
+
+.wrap{
+  width:min(722px,calc(100% - 96px));
+  margin:0 auto;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+  padding:94px 0 48px;
+  text-align:center;
+}
+
+
+/* =========================
+   PARTICIPATION PILL
+========================= */
+
+.pill{
+  display:inline-flex;
+
+  align-items:center;
+  gap:12px;
+
+  padding:13px 30px;
+
+  border:1px solid rgba(212,170,85,.43);
+  border-radius:999px;
+
+  background:rgba(67,55,34,.25);
+
+  color:#d4aa55;
+
+  font-size:24px;
+  font-weight:800;
+
+  letter-spacing:3px;
+}
+
+.medal{
+  font-size:22px;
+}
+
+
+/* =========================
+   MAIN HEADING
+========================= */
+
+h1{
+  margin:45px 0 20px;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size:62px;
+  line-height:.98;
+
+  letter-spacing:-2px;
+}
+
+h1 span{
+  color:var(--gold);
+}
+
+
+/* =========================
+   SUBTITLE
+========================= */
+
+.sub{
+  margin:0 auto;
+
+  color:#7184aa;
+
+  font-size:29px;
+  line-height:1.42;
+
+  max-width:650px;
+}
+
+
+/* =========================
+   VERIFIED CARD
+========================= */
+
+.verified{
+  margin-top:55px;
+
+  padding:62px 35px 65px;
+
+  border:1px solid rgba(0,219,146,.28);
+  border-radius:31px;
+
+  background:rgba(9,32,45,.72);
+
+  box-shadow:
+    inset 0 0 30px rgba(0,0,0,.07);
+
+  text-align:center;
+}
+
+
+/* =========================
+   CHECK ICON
+========================= */
+
+.check{
+  width:112px;
+  height:112px;
+
+  border-radius:50%;
+
+  margin:0 auto 43px;
+
+  display:grid;
+  place-items:center;
+
+  background:rgba(0,204,133,.12);
+}
+
+.check span{
+  width:45px;
+  height:45px;
+
+  border:5px solid var(--green);
+
+  border-radius:50%;
+
+  display:grid;
+  place-items:center;
+
+  color:var(--green);
+
+  font-size:28px;
+  font-weight:900;
+}
+
+
+/* =========================
+   VERIFIED TEXT
+========================= */
+
+.verified h2{
+  margin:0 0 20px;
+
+  color:#4ee38b;
+
+  font:
+    700 40px
+    Georgia,
+    "Times New Roman",
+    serif;
+}
+
+.verified p{
+  margin:0;
+
+  color:#7184a7;
+
+  font-size:27px;
+  line-height:1.55;
+}
+
+
+/* =========================
+   CERTIFICATE INFORMATION
+========================= */
+
+.info{
+  margin-top:63px;
+
+  padding:47px 48px 22px;
+
+  border:1px solid rgba(255,255,255,.06);
+
+  border-radius:30px;
+
+  background:rgba(10,24,52,.65);
+}
+
+.info h3{
+  margin:0 0 27px;
+
+  font:
+    700 31px
+    Georgia,
+    "Times New Roman",
+    serif;
+}
+
+
+/* =========================
+   INFORMATION ROW
+========================= */
+
+.row{
+  display:grid;
+
+  grid-template-columns:1fr 1.2fr;
+
+  gap:20px;
+
+  padding:26px 0;
+
+  border-bottom:1px solid rgba(255,255,255,.08);
+
+  font-size:25px;
+}
+
+.row:last-child{
+  border-bottom:0;
+}
+
+.label{
+  color:#7184a7;
+}
+
+.value{
+  font-weight:750;
+  text-align:right;
+}
+
+.gold{
+  color:var(--gold);
+}
+
+
+/* =========================
+   CERTIFICATE PREVIEW
+========================= */
+
+.preview-shell{
+  margin:44px auto 0;
+
+  max-width:680px;
+
+  padding:45px 40px 0;
+
+  border:1px solid rgba(255,255,255,.08);
+
+  border-radius:28px 28px 0 0;
+
+  text-align:center;
+}
+
+.preview-title{
+  color:#62759a;
+
+  letter-spacing:5px;
+
+  font-size:20px;
+
+  margin-bottom:38px;
+}
+
+
+/* =========================
+   CERTIFICATE PAPER
+========================= */
+
+.certificate{
+  width:100%;
+
+  aspect-ratio:1.414/1;
+
+  background:#f7f5ef;
+
+  color:#17172b;
+
+  padding:9% 8%;
+
+  position:relative;
+
+  overflow:hidden;
+
+  box-shadow:
+    0 12px 35px rgba(0,0,0,.25);
+}
+
+
+/* Certificate Brand */
+
+.cert-brand{
+  font-size:14px;
+
+  letter-spacing:5px;
+
+  color:#5c5c61;
+}
+
+
+/* Certificate Heading */
+
+.cert-title{
+  margin-top:25px;
+
+  font-size:clamp(38px,7vw,72px);
+
+  font-weight:800;
+
+  letter-spacing:2px;
+}
+
+
+/* Certificate Line */
+
+.cert-rule{
+  height:2px;
+
+  background:#bfc0bc;
+
+  margin:10px 0 0;
+}
+
+
+/* Certificate Subtitle */
+
+.cert-subtitle{
+  font-size:clamp(18px,3vw,34px);
+
+  letter-spacing:6px;
+
+  color:#5b5b60;
+
+  margin-top:10px;
+}
+
+
+/* Presented To */
+
+.present{
+  margin-top:9%;
+
+  font-size:13px;
+
+  letter-spacing:4px;
+
+  color:#6e6e71;
+}
+
+
+/* Recipient */
+
+.recipient{
+  margin-top:6%;
+
+  font-size:clamp(24px,4vw,43px);
+
+  font-weight:800;
+
+  text-transform:uppercase;
+
+  white-space:nowrap;
+}
+
+
+/* Green Line */
+
+.teal{
+  height:4px;
+
+  background:#11bfa9;
+
+  margin:14px 0 20px;
+}
+
+
+/* Certificate Text */
+
+.cert-text{
+  font-size:12px;
+
+  color:#666;
+
+  font-style:italic;
+
+  line-height:1.5;
+}
+
+
+/* Team */
+
+.team{
+  font-size:22px;
+
+  font-weight:800;
+
+  margin-top:16px;
+}
+
+
+/* Small Text */
+
+.cert-small{
+  font-size:9px;
+
+  color:#777;
+
+  line-height:1.9;
+
+  margin-top:25px;
+}
+
+
+/* =========================
+   CERTIFICATE SEAL
+========================= */
+
+.seal{
+  position:absolute;
+
+  left:50%;
+  bottom:16%;
+
+  transform:translateX(-50%);
+
+  width:100px;
+  height:100px;
+
+  border:4px solid #33469b;
+
+  border-radius:50%;
+
+  color:#33469b;
+
+  display:grid;
+  place-items:center;
+
+  font-size:28px;
+  font-weight:900;
+
+  opacity:.9;
+}
+
+.seal:before{
+  content:"SIMPLY UPDIFY • VERIFIED";
+
+  position:absolute;
+
+  width:130px;
+
+  font-size:8px;
+
+  letter-spacing:1.2px;
+
+  text-align:center;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer{
+  margin-top:0;
+
+  padding:100px 0 70px;
+
+  border-top:1px solid rgba(212,170,85,.32);
+}
+
+
+/* Footer Logo */
+
+.footer-logo{
+  width:52px;
+  height:52px;
+
+  border:1px solid var(--gold);
+
+  border-radius:50%;
+
+  display:grid;
+  place-items:center;
+
+  color:var(--gold);
+
+  font-family:Georgia,serif;
+
+  font-size:22px;
+
+  margin-bottom:42px;
+}
+
+
+/* Footer Description */
+
+.footer p{
+  color:#7184a7;
+
+  font-size:25px;
+
+  line-height:1.6;
+
+  max-width:650px;
+}
+
+
+/* Location */
+
+.location{
+  margin:38px 0 55px;
+
+  color:#7184a7;
+
+  font-size:24px;
+}
+
+
+/* Footer Heading */
+
+.footer h4{
+  margin:0 0 30px;
+
+  color:#66799d;
+
+  letter-spacing:3px;
+
+  font-size:18px;
+}
+
+
+/* Footer Links */
+
+.footer a,
+.contact{
+  display:block;
+
+  color:#7b8dad;
+
+  text-decoration:none;
+
+  font-size:24px;
+
+  margin:24px 0;
+}
+
+
+/* Copyright */
+
+.copyright{
+  border-top:1px solid rgba(255,255,255,.08);
+
+  margin-top:70px;
+
+  padding-top:35px;
+
+  color:#66799d;
+
+  font-size:18px;
+}
+
+
+/* Tagline */
+
+.tagline{
+  margin-top:25px;
+
+  color:#8b7442;
+
+  font:
+    italic 24px
+    Georgia,
+    serif;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:650px){
+
+  .wrap{
+    width:min(
+      722px,
+      calc(100% - 44px)
+    );
+  }
+
+  .hero{
+    padding-top:72px;
+  }
+
+  .pill{
+    font-size:14px;
+
+    letter-spacing:2px;
+
+    padding:11px 18px;
+  }
+
+  h1{
+    font-size:44px;
+  }
+
+  .sub{
+    font-size:20px;
+  }
+
+  .verified{
+    padding:44px 22px;
+  }
+
+  .check{
+    width:86px;
+    height:86px;
+
+    margin-bottom:28px;
+  }
+
+  .verified h2{
+    font-size:29px;
+  }
+
+  .verified p{
+    font-size:20px;
+  }
+
+  .info{
+    padding:32px 24px 12px;
+  }
+
+  .info h3{
+    font-size:25px;
+  }
+
+  .row{
+    font-size:17px;
+
+    grid-template-columns:1fr 1fr;
+  }
+
+  .preview-shell{
+    padding:30px 14px 0;
+  }
+
+  .footer p,
+  .location,
+  .footer a,
+  .contact{
+    font-size:18px;
+  }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =================================
+     FRONTEND DEMO LABEL
+================================== -->
+
+<div class="demo">
+  FRONTEND DEMO • NOT AN OFFICIAL VERIFICATION
+</div>
+
+
+
+<!-- =================================
+     MAIN CONTENT
+================================== -->
+
+<main>
+
+
+<!-- =================================
+     HERO SECTION
+================================== -->
+
+<section class="hero">
+
+<div class="wrap">
+
+
+<!-- Participation Certificate -->
+
+<div class="pill">
+
+<span class="medal">
+🏅
+</span>
+
+PARTICIPATION CERTIFICATE
+
+</div>
+
+
+
+<!-- Main Heading -->
+
+<h1>
+
+Claim Your
+
+<span>
+Certificate
+</span>
+
+</h1>
+
+
+
+<!-- Subtitle -->
+
+<p class="sub">
+
+Verify your attendance and download your
+premium participation certificate.
+
+</p>
+
+
+
+<!-- =================================
+     VERIFIED CERTIFICATE CARD
+================================== -->
+
+<div class="verified">
+
+
+<!-- Check -->
+
+<div class="check">
+
+<span>
+✓
+</span>
+
+</div>
+
+
+
+<h2>
+Verified Certificate
+</h2>
+
+
+
+<p>
+
+This is a frontend demonstration of the
+certificate interface.
+
+</p>
+
+
+</div>
+
+
+
+<!-- =================================
+     CERTIFICATE INFORMATION
+================================== -->
+
+<div class="info">
+
+
+<h3>
+Certificate Information
+</h3>
+
+
+
+<!-- Recipient -->
+
+<div class="row">
+
+<div class="label">
+Recipient Name
+</div>
+
+<div class="value">
+Mohammed saalim
+</div>
+
+</div>
+
+
+
+<!-- Team -->
+
+<div class="row">
+
+<div class="label">
+Team Name
+</div>
+
+<div class="value gold">
+Future forge
+</div>
+
+</div>
+
+
+
+<!-- Event -->
+
+<div class="row">
+
+<div class="label">
+Event
+</div>
+
+<div class="value">
+InnovateX 2026 Hackathon
+</div>
+
+</div>
+
+
+
+<!-- Certificate ID -->
+
+<div class="row">
+
+<div class="label">
+Certificate ID
+</div>
+
+<div class="value gold">
+SUA-DEMO-2026-21J1P
+</div>
+
+</div>
+
+
+
+<!-- Date -->
+
+<div class="row">
+
+<div class="label">
+Date Issued
+</div>
+
+<div class="value">
+July 3, 2026
+</div>
+
+</div>
+
+
+</div>
+
+
+
+<!-- =================================
+     CERTIFICATE PREVIEW
+================================== -->
+
+<div class="preview-shell">
+
+
+<div class="preview-title">
+
+CERTIFICATE PREVIEW
+
+</div>
+
+
+
+<div class="certificate">
+
+
+<!-- Brand -->
+
+<div class="cert-brand">
+SIMPLY UPDIFY
+</div>
+
+
+
+<!-- Certificate Title -->
+
+<div class="cert-title">
+CERTIFICATE
+</div>
+
+
+
+<div class="cert-rule">
+</div>
+
+
+
+<!-- Subtitle -->
+
+<div class="cert-subtitle">
+OF PARTICIPATION
+</div>
+
+
+
+<!-- Presented -->
+
+<div class="present">
+
+THIS CERTIFICATE IS PRESENTED TO
+
+</div>
+
+
+
+<!-- Recipient -->
+
+<div class="recipient">
+
+MOHAMMED SAALIM
+
+</div>
+
+
+
+<!-- Teal Line -->
+
+<div class="teal">
+</div>
+
+
+
+<!-- Description -->
+
+<div class="cert-text">
+
+Frontend demonstration certificate interface
+for the Simply Updify-style layout.
+
+</div>
+
+
+
+<!-- Team -->
+
+<div class="team">
+
+Future forge
+
+</div>
+
+
+
+<!-- Certificate Description -->
+
+<div
+class="cert-text"
+style="margin-top:12px;font-style:normal"
+>
+
+During the event, the participant actively
+participated in development activities,
+collaborated with a cross-functional team,
+and contributed to assigned projects.
+
+</div>
+
+
+
+<!-- Seal -->
+
+<div class="seal">
+
+SU
+
+</div>
+
+
+
+<!-- Certificate Small Details -->
+
+<div class="cert-small">
+
+Internship Duration:
+1st July 2026 – 1st August 2026
+
+<br>
+
+Certificate ID:
+SUA-DEMO-2026-21J1P
+
+<br>
+
+Date of Issue:
+3 July 2026
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+</section>
+
+
+
+<!-- =================================
+     FOOTER
+================================== -->
+
+<footer class="footer">
+
+
+<div class="wrap">
+
+
+<!-- Logo -->
+
+<div class="footer-logo">
+
+SU
+
+</div>
+
+
+
+<!-- Description -->
+
+<p>
+
+Empowering innovators through national
+hackathons, technical workshops, and
+real-world challenges.
+
+</p>
+
+
+
+<!-- Location -->
+
+<div class="location">
+
+⌾ &nbsp;
+Salem, Tamil Nadu, India
+
+</div>
+
+
+
+<!-- Hackathon -->
+
+<h4>
+
+HACKATHON
+
+</h4>
+
+
+
+<a href="#!">
+Register for Free
+</a>
+
+
+
+<a href="#!">
+Get Certificate
+</a>
+
+
+
+<a href="#!">
+Back to Home
+</a>
+
+
+
+<!-- Contact -->
+
+<h4 style="margin-top:82px">
+
+GET IN TOUCH
+
+</h4>
+
+
+
+<div class="contact">
+
+✉ &nbsp;
+hello@simplyupdify.app
+
+</div>
+
+
+
+<div class="contact">
+
+◎ &nbsp;
+@simplyupdify
+
+</div>
+
+
+
+<div class="contact">
+
+▣ &nbsp;
+Simply Updify
+
+</div>
+
+
+
+<!-- Copyright -->
+
+<div class="copyright">
+
+© 2026 Simply Updify —
+SU Academy. All rights reserved.
+
+</div>
+
+
+
+<!-- Tagline -->
+
+<div class="tagline">
+
+/ updify the world
+
+</div>
+
+
+</div>
+
+</footer>
+
+
+</main>
+
+
+</body>
+  </html><!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>Certificate Demo — Simply Updify</title>
+
+<style>
+
+:root{
+  --bg:#06112b;
+  --panel:#0a1934;
+  --panel2:#08172e;
+  --line:rgba(185,145,58,.34);
+  --gold:#d4aa55;
+  --gold2:#b98d3d;
+  --muted:#7284a7;
+  --white:#f4f4f2;
+  --green:#18e47a;
+  --green-bg:rgba(0,190,125,.10);
+}
+
+*{
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  margin:0;
+  min-height:100vh;
+
+  background:
+    radial-gradient(
+      circle at 50% 22%,
+      rgba(30,53,92,.18),
+      transparent 30%
+    ),
+    linear-gradient(
+      180deg,
+      #061026 0%,
+      #07132d 55%,
+      #07142e 100%
+    );
+
+  color:var(--white);
+
+  font-family:
+    Inter,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+}
+
+
+/* =========================
+   DEMO LABEL
+========================= */
+
+.demo{
+  position:fixed;
+  z-index:99;
+  top:12px;
+  right:12px;
+
+  padding:7px 11px;
+
+  border:1px solid rgba(212,170,85,.45);
+  border-radius:999px;
+
+  background:rgba(4,13,31,.88);
+
+  color:#e0bf7a;
+
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:1.5px;
+
+  backdrop-filter:blur(8px);
+}
+
+
+/* =========================
+   MAIN WRAPPER
+========================= */
+
+.wrap{
+  width:min(722px,calc(100% - 96px));
+  margin:0 auto;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+  padding:94px 0 48px;
+  text-align:center;
+}
+
+
+/* =========================
+   PARTICIPATION PILL
+========================= */
+
+.pill{
+  display:inline-flex;
+
+  align-items:center;
+  gap:12px;
+
+  padding:13px 30px;
+
+  border:1px solid rgba(212,170,85,.43);
+  border-radius:999px;
+
+  background:rgba(67,55,34,.25);
+
+  color:#d4aa55;
+
+  font-size:24px;
+  font-weight:800;
+
+  letter-spacing:3px;
+}
+
+.medal{
+  font-size:22px;
+}
+
+
+/* =========================
+   MAIN HEADING
+========================= */
+
+h1{
+  margin:45px 0 20px;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size:62px;
+  line-height:.98;
+
+  letter-spacing:-2px;
+}
+
+h1 span{
+  color:var(--gold);
+}
+
+
+/* =========================
+   SUBTITLE
+========================= */
+
+.sub{
+  margin:0 auto;
+
+  color:#7184aa;
+
+  font-size:29px;
+  line-height:1.42;
+
+  max-width:650px;
+}
+
+
+/* =========================
+   VERIFIED CARD
+========================= */
+
+.verified{
+  margin-top:55px;
+
+  padding:62px 35px 65px;
+
+  border:1px solid rgba(0,219,146,.28);
+  border-radius:31px;
+
+  background:rgba(9,32,45,.72);
+
+  box-shadow:
+    inset 0 0 30px rgba(0,0,0,.07);
+
+  text-align:center;
+}
+
+
+/* =========================
+   CHECK ICON
+========================= */
+
+.check{
+  width:112px;
+  height:112px;
+
+  border-radius:50%;
+
+  margin:0 auto 43px;
+
+  display:grid;
+  place-items:center;
+
+  background:rgba(0,204,133,.12);
+}
+
+.check span{
+  width:45px;
+  height:45px;
+
+  border:5px solid var(--green);
+
+  border-radius:50%;
+
+  display:grid;
+  place-items:center;
+
+  color:var(--green);
+
+  font-size:28px;
+  font-weight:900;
+}
+
+
+/* =========================
+   VERIFIED TEXT
+========================= */
+
+.verified h2{
+  margin:0 0 20px;
+
+  color:#4ee38b;
+
+  font:
+    700 40px
+    Georgia,
+    "Times New Roman",
+    serif;
+}
+
+.verified p{
+  margin:0;
+
+  color:#7184a7;
+
+  font-size:27px;
+  line-height:1.55;
+}
+
+
+/* =========================
+   CERTIFICATE INFORMATION
+========================= */
+
+.info{
+  margin-top:63px;
+
+  padding:47px 48px 22px;
+
+  border:1px solid rgba(255,255,255,.06);
+
+  border-radius:30px;
+
+  background:rgba(10,24,52,.65);
+}
+
+.info h3{
+  margin:0 0 27px;
+
+  font:
+    700 31px
+    Georgia,
+    "Times New Roman",
+    serif;
+}
+
+
+/* =========================
+   INFORMATION ROW
+========================= */
+
+.row{
+  display:grid;
+
+  grid-template-columns:1fr 1.2fr;
+
+  gap:20px;
+
+  padding:26px 0;
+
+  border-bottom:1px solid rgba(255,255,255,.08);
+
+  font-size:25px;
+}
+
+.row:last-child{
+  border-bottom:0;
+}
+
+.label{
+  color:#7184a7;
+}
+
+.value{
+  font-weight:750;
+  text-align:right;
+}
+
+.gold{
+  color:var(--gold);
+}
+
+
+/* =========================
+   CERTIFICATE PREVIEW
+========================= */
+
+.preview-shell{
+  margin:44px auto 0;
+
+  max-width:680px;
+
+  padding:45px 40px 0;
+
+  border:1px solid rgba(255,255,255,.08);
+
+  border-radius:28px 28px 0 0;
+
+  text-align:center;
+}
+
+.preview-title{
+  color:#62759a;
+
+  letter-spacing:5px;
+
+  font-size:20px;
+
+  margin-bottom:38px;
+}
+
+
+/* =========================
+   CERTIFICATE PAPER
+========================= */
+
+.certificate{
+  width:100%;
+
+  aspect-ratio:1.414/1;
+
+  background:#f7f5ef;
+
+  color:#17172b;
+
+  padding:9% 8%;
+
+  position:relative;
+
+  overflow:hidden;
+
+  box-shadow:
+    0 12px 35px rgba(0,0,0,.25);
+}
+
+
+/* Certificate Brand */
+
+.cert-brand{
+  font-size:14px;
+
+  letter-spacing:5px;
+
+  color:#5c5c61;
+}
+
+
+/* Certificate Heading */
+
+.cert-title{
+  margin-top:25px;
+
+  font-size:clamp(38px,7vw,72px);
+
+  font-weight:800;
+
+  letter-spacing:2px;
+}
+
+
+/* Certificate Line */
+
+.cert-rule{
+  height:2px;
+
+  background:#bfc0bc;
+
+  margin:10px 0 0;
+}
+
+
+/* Certificate Subtitle */
+
+.cert-subtitle{
+  font-size:clamp(18px,3vw,34px);
+
+  letter-spacing:6px;
+
+  color:#5b5b60;
+
+  margin-top:10px;
+}
+
+
+/* Presented To */
+
+.present{
+  margin-top:9%;
+
+  font-size:13px;
+
+  letter-spacing:4px;
+
+  color:#6e6e71;
+}
+
+
+/* Recipient */
+
+.recipient{
+  margin-top:6%;
+
+  font-size:clamp(24px,4vw,43px);
+
+  font-weight:800;
+
+  text-transform:uppercase;
+
+  white-space:nowrap;
+}
+
+
+/* Green Line */
+
+.teal{
+  height:4px;
+
+  background:#11bfa9;
+
+  margin:14px 0 20px;
+}
+
+
+/* Certificate Text */
+
+.cert-text{
+  font-size:12px;
+
+  color:#666;
+
+  font-style:italic;
+
+  line-height:1.5;
+}
+
+
+/* Team */
+
+.team{
+  font-size:22px;
+
+  font-weight:800;
+
+  margin-top:16px;
+}
+
+
+/* Small Text */
+
+.cert-small{
+  font-size:9px;
+
+  color:#777;
+
+  line-height:1.9;
+
+  margin-top:25px;
+}
+
+
+/* =========================
+   CERTIFICATE SEAL
+========================= */
+
+.seal{
+  position:absolute;
+
+  left:50%;
+  bottom:16%;
+
+  transform:translateX(-50%);
+
+  width:100px;
+  height:100px;
+
+  border:4px solid #33469b;
+
+  border-radius:50%;
+
+  color:#33469b;
+
+  display:grid;
+  place-items:center;
+
+  font-size:28px;
+  font-weight:900;
+
+  opacity:.9;
+}
+
+.seal:before{
+  content:"SIMPLY UPDIFY • VERIFIED";
+
+  position:absolute;
+
+  width:130px;
+
+  font-size:8px;
+
+  letter-spacing:1.2px;
+
+  text-align:center;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer{
+  margin-top:0;
+
+  padding:100px 0 70px;
+
+  border-top:1px solid rgba(212,170,85,.32);
+}
+
+
+/* Footer Logo */
+
+.footer-logo{
+  width:52px;
+  height:52px;
+
+  border:1px solid var(--gold);
+
+  border-radius:50%;
+
+  display:grid;
+  place-items:center;
+
+  color:var(--gold);
+
+  font-family:Georgia,serif;
+
+  font-size:22px;
+
+  margin-bottom:42px;
+}
+
+
+/* Footer Description */
+
+.footer p{
+  color:#7184a7;
+
+  font-size:25px;
+
+  line-height:1.6;
+
+  max-width:650px;
+}
+
+
+/* Location */
+
+.location{
+  margin:38px 0 55px;
+
+  color:#7184a7;
+
+  font-size:24px;
+}
+
+
+/* Footer Heading */
+
+.footer h4{
+  margin:0 0 30px;
+
+  color:#66799d;
+
+  letter-spacing:3px;
+
+  font-size:18px;
+}
+
+
+/* Footer Links */
+
+.footer a,
+.contact{
+  display:block;
+
+  color:#7b8dad;
+
+  text-decoration:none;
+
+  font-size:24px;
+
+  margin:24px 0;
+}
+
+
+/* Copyright */
+
+.copyright{
+  border-top:1px solid rgba(255,255,255,.08);
+
+  margin-top:70px;
+
+  padding-top:35px;
+
+  color:#66799d;
+
+  font-size:18px;
+}
+
+
+/* Tagline */
+
+.tagline{
+  margin-top:25px;
+
+  color:#8b7442;
+
+  font:
+    italic 24px
+    Georgia,
+    serif;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:650px){
+
+  .wrap{
+    width:min(
+      722px,
+      calc(100% - 44px)
+    );
+  }
+
+  .hero{
+    padding-top:72px;
+  }
+
+  .pill{
+    font-size:14px;
+
+    letter-spacing:2px;
+
+    padding:11px 18px;
+  }
+
+  h1{
+    font-size:44px;
+  }
+
+  .sub{
+    font-size:20px;
+  }
+
+  .verified{
+    padding:44px 22px;
+  }
+
+  .check{
+    width:86px;
+    height:86px;
+
+    margin-bottom:28px;
+  }
+
+  .verified h2{
+    font-size:29px;
+  }
+
+  .verified p{
+    font-size:20px;
+  }
+
+  .info{
+    padding:32px 24px 12px;
+  }
+
+  .info h3{
+    font-size:25px;
+  }
+
+  .row{
+    font-size:17px;
+
+    grid-template-columns:1fr 1fr;
+  }
+
+  .preview-shell{
+    padding:30px 14px 0;
+  }
+
+  .footer p,
+  .location,
+  .footer a,
+  .contact{
+    font-size:18px;
+  }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =================================
+     FRONTEND DEMO LABEL
+================================== -->
+
+<div class="demo">
+  FRONTEND DEMO • NOT AN OFFICIAL VERIFICATION
+</div>
+
+
+
+<!-- =================================
+     MAIN CONTENT
+================================== -->
+
+<main>
+
+
+<!-- =================================
+     HERO SECTION
+================================== -->
+
+<section class="hero">
+
+<div class="wrap">
+
+
+<!-- Participation Certificate -->
+
+<div class="pill">
+
+<span class="medal">
+🏅
+</span>
+
+PARTICIPATION CERTIFICATE
+
+</div>
+
+
+
+<!-- Main Heading -->
+
+<h1>
+
+Claim Your
+
+<span>
+Certificate
+</span>
+
+</h1>
+
+
+
+<!-- Subtitle -->
+
+<p class="sub">
+
+Verify your attendance and download your
+premium participation certificate.
+
+</p>
+
+
+
+<!-- =================================
+     VERIFIED CERTIFICATE CARD
+================================== -->
+
+<div class="verified">
+
+
+<!-- Check -->
+
+<div class="check">
+
+<span>
+✓
+</span>
+
+</div>
+
+
+
+<h2>
+Verified Certificate
+</h2>
+
+
+
+<p>
+
+This is a frontend demonstration of the
+certificate interface.
+
+</p>
+
+
+</div>
+
+
+
+<!-- =================================
+     CERTIFICATE INFORMATION
+================================== -->
+
+<div class="info">
+
+
+<h3>
+Certificate Information
+</h3>
+
+
+
+<!-- Recipient -->
+
+<div class="row">
+
+<div class="label">
+Recipient Name
+</div>
+
+<div class="value">
+Mohammed saalim
+</div>
+
+</div>
+
+
+
+<!-- Team -->
+
+<div class="row">
+
+<div class="label">
+Team Name
+</div>
+
+<div class="value gold">
+Future forge
+</div>
+
+</div>
+
+
+
+<!-- Event -->
+
+<div class="row">
+
+<div class="label">
+Event
+</div>
+
+<div class="value">
+InnovateX 2026 Hackathon
+</div>
+
+</div>
+
+
+
+<!-- Certificate ID -->
+
+<div class="row">
+
+<div class="label">
+Certificate ID
+</div>
+
+<div class="value gold">
+SUA-DEMO-2026-21J1P
+</div>
+
+</div>
+
+
+
+<!-- Date -->
+
+<div class="row">
+
+<div class="label">
+Date Issued
+</div>
+
+<div class="value">
+July 3, 2026
+</div>
+
+</div>
+
+
+</div>
+
+
+
+<!-- =================================
+     CERTIFICATE PREVIEW
+================================== -->
+
+<div class="preview-shell">
+
+
+<div class="preview-title">
+
+CERTIFICATE PREVIEW
+
+</div>
+
+
+
+<div class="certificate">
+
+
+<!-- Brand -->
+
+<div class="cert-brand">
+SIMPLY UPDIFY
+</div>
+
+
+
+<!-- Certificate Title -->
+
+<div class="cert-title">
+CERTIFICATE
+</div>
+
+
+
+<div class="cert-rule">
+</div>
+
+
+
+<!-- Subtitle -->
+
+<div class="cert-subtitle">
+OF PARTICIPATION
+</div>
+
+
+
+<!-- Presented -->
+
+<div class="present">
+
+THIS CERTIFICATE IS PRESENTED TO
+
+</div>
+
+
+
+<!-- Recipient -->
+
+<div class="recipient">
+
+MOHAMMED SAALIM
+
+</div>
+
+
+
+<!-- Teal Line -->
+
+<div class="teal">
+</div>
+
+
+
+<!-- Description -->
+
+<div class="cert-text">
+
+Frontend demonstration certificate interface
+for the Simply Updify-style layout.
+
+</div>
+
+
+
+<!-- Team -->
+
+<div class="team">
+
+Future forge
+
+</div>
+
+
+
+<!-- Certificate Description -->
+
+<div
+class="cert-text"
+style="margin-top:12px;font-style:normal"
+>
+
+During the event, the participant actively
+participated in development activities,
+collaborated with a cross-functional team,
+and contributed to assigned projects.
+
+</div>
+
+
+
+<!-- Seal -->
+
+<div class="seal">
+
+SU
+
+</div>
+
+
+
+<!-- Certificate Small Details -->
+
+<div class="cert-small">
+
+Internship Duration:
+1st July 2026 – 1st August 2026
+
+<br>
+
+Certificate ID:
+SUA-DEMO-2026-21J1P
+
+<br>
+
+Date of Issue:
+3 July 2026
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+</section>
+
+
+
+<!-- =================================
+     FOOTER
+================================== -->
+
+<footer class="footer">
+
+
+<div class="wrap">
+
+
+<!-- Logo -->
+
+<div class="footer-logo">
+
+SU
+
+</div>
+
+
+
+<!-- Description -->
+
+<p>
+
+Empowering innovators through national
+hackathons, technical workshops, and
+real-world challenges.
+
+</p>
+
+
+
+<!-- Location -->
+
+<div class="location">
+
+⌾ &nbsp;
+Salem, Tamil Nadu, India
+
+</div>
+
+
+
+<!-- Hackathon -->
+
+<h4>
+
+HACKATHON
+
+</h4>
+
+
+
+<a href="#!">
+Register for Free
+</a>
+
+
+
+<a href="#!">
+Get Certificate
+</a>
+
+
+
+<a href="#!">
+Back to Home
+</a>
+
+
+
+<!-- Contact -->
+
+<h4 style="margin-top:82px">
+
+GET IN TOUCH
+
+</h4>
+
+
+
+<div class="contact">
+
+✉ &nbsp;
+hello@simplyupdify.app
+
+</div>
+
+
+
+<div class="contact">
+
+◎ &nbsp;
+@simplyupdify
+
+</div>
+
+
+
+<div class="contact">
+
+▣ &nbsp;
+Simply Updify
+
+</div>
+
+
+
+<!-- Copyright -->
+
+<div class="copyright">
+
+© 2026 Simply Updify —
+SU Academy. All rights reserved.
+
+</div>
+
+
+
+<!-- Tagline -->
+
+<div class="tagline">
+
+/ updify the world
+
+</div>
+
+
+</div>
+
+</footer>
+
+
+</main>
+
+
+</body>
+</html>
